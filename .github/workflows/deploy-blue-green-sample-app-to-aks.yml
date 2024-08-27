@@ -1,0 +1,21 @@
+name: Deploy Blue Green Sample app
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  deploy-blue-green-sample-to-aks:
+    runs-on: ubuntu-latest
+    environment: aks
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Echo sample
+        run: |
+          echo "Hello, World!"
