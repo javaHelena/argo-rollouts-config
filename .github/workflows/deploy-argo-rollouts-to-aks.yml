@@ -56,8 +56,8 @@ jobs:
 
       - name: Deploy ArgoCD
         run: |
-          helm upgrade --install argo-rollouts argo/argo-rollouts --namespace rollouts --create-namespace
+          helm upgrade --install argo-rollouts argo/argo-rollouts --namespace argo-rollouts --create-namespace
 
       - name: Wait for Argo CD Pods to be Ready
         run: |
-          kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=argo-rollouts -n rollouts --timeout=120s
+          kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=argo-rollouts -n argo-rollouts --timeout=120s
