@@ -54,10 +54,10 @@ jobs:
           helm repo add argo https://argoproj.github.io/argo-helm
           helm repo update
 
-      - name: Deploy ArgoCD
+      - name: Deploy Argo Rollouts with Dashboard
         run: |
-          helm upgrade --install argo-rollouts argo/argo-rollouts --namespace argo-rollouts --create-namespace
+          helm upgrade --install argo-rollouts argo/argo-rollouts --namespace argo-rollouts --create-namespace --set dashboard.enabled=true
 
-      - name: Wait for Argo CD Pods to be Ready
+      - name: Wait for Argo Rollouts Pods to be Ready
         run: |
           kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=argo-rollouts -n argo-rollouts --timeout=120s
